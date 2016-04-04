@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
+    <useStyles filename="nifty-default-styles.xml"/>
+    <useControls filename="nifty-default-controls.xml"/>
+    <registerSound id="myclick" filename="Interface/Nifty/sounds/sound.wav" />
+    <registerSound id="myfocus" filename="Interface/Nifty/sounds/change.wav" />
+    <controlDefinition name="button1" controller="sr3d.controls.screen.StartScreenControllerState"
+   
+                       inputMapping="de.lessvoid.nifty.input.mapping.MenuInputMapping"> 
+        <image id="#button_normal" style="#image" filename="Interface/Nifty/images/button_normal.png"childLayout="center"
+               width="160px"height="40px"inherit="true">
+          
+            <effect>
+                <onHover name="changeImage"active="Interface/Nifty/images/button_red.png"
+                         inactive="Interface/Nifty/images/button_normal.png"/>
+                <onClick name="playSound" sound="myclick"/>                
+            </effect>
+            <text id="#text"style="#text"font="Interface/Fonts/gameplay.fnt"text="$label"/>
+        </image>
+        
+    </controlDefinition>
+
+    <controlDefinition name="button2" controller="sr3d.controls.screen.StartScreenControllerState"
+                         inputMapping="de.lessvoid.nifty.input.mapping.MenuInputMapping"> 
+        <image id="#button_normal" style="#image" filename="Interface/Nifty/images/button.png"childLayout="center"
+               width="20%"height="100%"inherit="true" focusable="true">          
+            <effect>
+          
+                <onClick name="playSound" sound="myclick"/> 
+                <onHover name="textSize" maxSize="100%">
+                    <hover hoverFalloffType="linear"
+                           hoverFalloffConstraint="both"
+                           hoverWidth="50%"
+                           hoverHeight="50%" />
+                </onHover>
+                <onEndHover name="playSound"sound="myfocus"/>
+            </effect>
+            <text id="#text"style="#text"font="Interface/Fonts/gameplay.fnt"text="$label"/>
+        </image>     
+    </controlDefinition> 
+    
+    <screen id="start" controller="dt3d.controls.screen.StartScreenControllerState">
+        <layer id="layer"  childLayout="absolute">
+            <panel id="mainB" height="10%" width="100%" align="center" valign="center" childLayout="horizontal" visibleToMouse="true"
+                   x= "0%"y="10%">
+                <control name="button2"id="startB"label="START"  visibleToMouse="true">
+                    <interact onClick="startGame()"/>
+                </control>
+                <control name="button2"id="controlsB"label="CONTROLS"  visibleToMouse="true">
+                </control>
+                <control name="button2"id="settingsB"label="SETTINGS"  visibleToMouse="true">
+                </control>
+                <control name="button2"id="creditsB"label="CREDITS"  visibleToMouse="true">
+                </control>
+                <control name="button2"id="exitB"label="EXIT"  visibleToMouse="true">
+                </control>
+            </panel>
+            <panel id="carB" height="10%"width ="100%" align="center" valign="center" childLayout="absolute" visibleToMouse="true"
+                   x="0%"y="80%">
+                <control name="button1"id="prevB"label="PREV"  visibleToMouse="true"x="0%"y="0%">
+                    <interact onClick="prevCar()"/>
+                </control>
+                <control name="button1"id="nextB"label="NEXT"  visibleToMouse="true" x="75%"y="0%">
+                    <interact onClick="nextCar()"/>
+                </control>
+            </panel>
+        </layer>
+    </screen>
+</nifty>
